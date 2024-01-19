@@ -3,6 +3,8 @@
 
 using Microsoft.EntityFrameworkCore;
 using PhoneShopServer.Data;
+using PhoneShopServer.Repositories;
+using PhoneShopSharedLibrary.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default") ?? 
         throw new InvalidOperationException("Connection string not found"));
 });
+builder.Services.AddScoped<IProduct, ProductRepository>();
 
 
 
